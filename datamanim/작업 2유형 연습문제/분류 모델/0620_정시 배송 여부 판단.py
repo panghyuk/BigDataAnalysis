@@ -17,7 +17,7 @@ X_train = X_train.drop('ID',axis = 1)
 X_test = X_test.drop('ID',axis = 1)
 y = y_train['Reached.on.Time_Y.N']
 
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler,RobustScaler,StandardScaler
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 X_train[cat] = X_train[cat].apply(le.fit_transform)

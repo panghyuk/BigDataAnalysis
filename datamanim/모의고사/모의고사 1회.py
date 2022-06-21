@@ -19,7 +19,7 @@ ans = df[(df['age'] >= 25) & (df['age'] < 29)]
 ans = ans[ans['housing'] == 'yes']
 # print(len(ans))
 
-'''' Q4 '''
+'''' Q4 ** '''
 cat = []
 for col in df.select_dtypes(exclude = 'int'):
     target = df[col]
@@ -37,12 +37,12 @@ ans = new_df['balance'].mean()
 # print(new_df)
 # print(ans)
 
-''' Q6 '''
+''' Q6 * '''
 new_df = df[['day','month']].value_counts()
 ans = new_df.index[0]
 # print(ans)
 
-''' Q7 '''
+''' Q7 *** '''
 from scipy.stats import shapiro
 ans = shapiro(df[df['job'] == 'unknown']['age'])[1]
 # print(ans)
@@ -52,14 +52,14 @@ new_df = df[['age','balance']].corr()
 ans = new_df.iloc[0,1]
 # print(ans)
 
-''' Q9 '''
+''' Q9 *** '''
 y = pd.crosstab(df['y'],df['education'])
 from scipy.stats import chi2_contingency
 chi2, p, dof, expected = chi2_contingency(y)
 # print(y)
 # print(p)
 
-''' Q10 '''
+''' Q10 ***'''
 new_df = df.groupby(['job','marital']).size().reset_index()
 # print(type(new_df))
 pivot_df = new_df.pivot_table(index = 'job', columns = 'marital')[0]
