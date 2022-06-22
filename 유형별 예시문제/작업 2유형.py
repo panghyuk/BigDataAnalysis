@@ -1,7 +1,7 @@
 import pandas as pd
-X_test = pd.read_csv("data/X_test.csv")
-X_train = pd.read_csv("data/X_train.csv")
-y_train = pd.read_csv("data/y_train.csv")
+X_test = pd.read_csv("data/X_test.csv",encoding = 'euc-kr')
+X_train = pd.read_csv("data/X_train.csv",encoding = 'euc-kr')
+y_train = pd.read_csv("data/y_train.csv",encoding = 'euc-kr')
 
 # 사용자 코딩
 cust_id = X_test['cust_id'].copy()
