@@ -36,19 +36,21 @@
 
 ### 작업 2유형
 import pandas as pd
-X_train = pd.read_csv("data/X_train.csv")
-X_test = pd.read_csv("data/X_test.csv")
-y_train = pd.read_csv("data/y_train.csv")
+X_train = pd.read_csv("2회 기출/X_train.csv")
+X_test = pd.read_csv("2회 기출/X_test.csv")
+y_train = pd.read_csv("2회 기출/y_train.csv")
+y_test = pd.read_csv('2회 기출/y_test.csv')
 
 # 결측치 X
 # print(X_train.isnull().sum())
 # print(X_test.isnull().sum())
 
-# id 삭제 & y 타겟값
+# # id 삭제 & y 타겟값
 # X_train = X_train.drop('ID',axis = 1)
 # id = X_test.pop("ID")
 # y = y_train['Reached.on.Time_Y.N']
 
+# 오버샘플링
 train = pd.merge(X_train,y_train, on = 'ID')
 yes = train.loc[train['Reached.on.Time_Y.N'] == 1, ['ID']].count()[0]
 no = train.loc[train['Reached.on.Time_Y.N'] == 0, ['ID']].count()[0]
@@ -90,6 +92,9 @@ print(roc_auc_score(y_val,pred_proba))
 
 # 최종 test 데이터 셋 예측
 pred_final = model.predict(X_test)
+pred_proba_final = model.predict_proba(X_test)[:,1]
+print(roc_auc_score(y_test['Reached.on.Time_Y.N'],pred_final))
+print(roc_auc_score(y_test['Reached.on.Time_Y.N'],pred_proba_final))
 #
 # output = pd.DataFrame({'ID':id, 'Reached.on.Time_Y.N':pred_final})
 # output.to_csv("data/20220623.csv",index = False)
