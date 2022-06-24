@@ -19,6 +19,7 @@ X_test.loc[X_test['최대구매액']<0,'총구매액'] = 0
 g_zero = X_train.loc[X_train['gender'] == 0, ['cust_id']].count()[0]
 g_one = X_train.loc[X_train['gender'] == 1, ['cust_id']].count()[0]
 # print(g_zero,g_one)
+
 # 데이터 불균형 차이
 diff = g_zero - g_one
 # train 셋에서 gender가 1인 대상만 데이터 셋으로 저장
@@ -60,9 +61,9 @@ model.fit(X_tr,y_tr)
 pred = model.predict(X_val)
 pred_proba = model.predict_proba(X_val)[:,1]
 # print(roc_auc_score(y_val,pred))
-# print(roc_auc_score(y_val,pred_proba))
+print(roc_auc_score(y_val,pred_proba))
 
 pred_final = model.predict_proba(X_test)[:,1]
 output = pd.DataFrame({"cust_id":cust_id,'gender':pred_final})
-output.to_csv("20220622.csv",index = False)
+# output.to_csv("20220622.csv",index = False)
 # print(output.head())
